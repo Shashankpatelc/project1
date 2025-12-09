@@ -1,12 +1,18 @@
-<?php 
-// Placeholder for future PHP logic: session_start(); and redirection
+<?php
+
+$conn = new mysqli("localhost","root","","wellness_tracker_db");
+if($conn->connect_error){
+    die("Connection failed".$conn->connect_error);
+}
+    echo "Connected Successfully";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Wellness Tracker - Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
     <div class="header">
@@ -14,8 +20,8 @@
         <p>Your private, supportive tool for tracking mood and stress.</p>
         
         <div class="auth-buttons">
-            <a href="login.php" class="button">Log In</a>
-            <a href="register.php" class="button primary">Sign Up</a>
+            <a href="html/login.html" class="button">Log In</a>
+            <a href="html/register.html" class="button primary">Sign Up</a>
         </div>
     </div>
     

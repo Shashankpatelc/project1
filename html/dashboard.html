@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard - Wellness Tracker</title>
+    <link rel="stylesheet" href="../style.css"> 
+</head>
+<body>
+    <div class="header">
+        <h1>Hello, <?php echo $username; ?>!</h1> 
+        <p>Your journey starts here. Take a moment to track your well-being.</p>
+        
+        <div class="auth-buttons">
+            <a href="help.php" class="button primary">Quick Support</a>
+            <a href="php/logout.php" class="button">Sign Out</a> 
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <section class="tracking-form">
+            <h2>Track Your Day</h2>
+            <div class="alert"> <?php echo $submission_message; ?></div>
+            
+            <form action="../php/dashboard.php" method="post">
+                
+                <div class="slider-group">
+                    <label for="mood_score">Your Mood (0 to 10): <span id="moodValue">5</span></label>
+                    <input type="range" min="0" max="10" value="5" name="mood_score" id="mood_score" required>
+                </div>
+
+                <div class="slider-group">
+                    <label for="stress_score">Your Stress Level (0 to 10): <span id="stressValue">5</span></label>
+                    <input type="range" min="0" max="10" value="5" name="stress_score" id="stress_score" required>
+                </div>
+
+                <div>
+                    <label for="notes">Quick Notes (Optional):</label>
+                    <textarea name="notes" id="notes" rows="3" placeholder="Any thoughts on your energy, sleep, or events?"></textarea>
+                </div>
+
+                <input type="submit" value="Save Entry" class="button primary">
+            </form>
+        </section>
+
+        <hr>
+        
+        <section class="past-entries">
+            <h2>Your Recent Progress</h2>
+            
+            <?php if (empty($entries)): ?>
+                <p>No entries yet! Track your first mood entry above.</p>
+            <?php else: ?>
+                <p>Displaying <?php echo count($entries); ?> recent entries...</p>
+            <?php endif; ?>
+        </section>
+    </div>
+
+    <script>
+        document.getElementById('mood_score').oninput = function() {
+            document.getElementById('moodValue').innerText = this.value;
+        };
+        document.getElementById('stress_score').oninput = function() {
+            document.getElementById('stressValue').innerText = this.value;
+        };
+    </script>
+</body>
+</html>
